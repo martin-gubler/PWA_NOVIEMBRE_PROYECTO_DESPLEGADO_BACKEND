@@ -250,7 +250,7 @@ export const forgotPasswordController = async (req, res) => {
         const resetToken = jwt.sign({email: user.email}, ENVIROMENT.JWT_SECRET, {
             expiresIn: '1h'
         })
-        const resetUrl = `http://localhost:${ENVIROMENT.URL_FRONT}/reset-password/${resetToken}`
+        const resetUrl = `${ENVIROMENT.URL_FRONT}/reset-password/${resetToken}`
         sendEmail({
             to: user.email,
             subject: 'Restablecer contrasena',
