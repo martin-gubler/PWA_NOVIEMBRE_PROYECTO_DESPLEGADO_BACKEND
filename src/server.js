@@ -14,7 +14,13 @@ import ProductRepository from './repositories/product.repository.js';
 const app = express();
 const PORT = ENVIROMENT.PORT || 3000
 
-app.use(cors());
+const allowedOrigins = ['https://pwa-noviembre-proyecto-desplegado-frontend-sigma.vercel.app'];
+
+app.use(cors({
+    origin: allowedOrigins, // Permitir solo solicitudes desde tu dominio frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
+    credentials: true, // Permitir envío de cookies o cabeceras con credenciales}
+}));
 app.use(express.json({limit: '5mb'}))
 app.use(verifyApiKeyMiddleware)
 
